@@ -32,7 +32,6 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val profileImage = view.findViewById<ImageView>(R.id.image_view_profile)
-        val imageUrl = "https://wallpapercave.com/wp/wp5244831.png" // Замените на URL вашего изображения или путь к ресурсу
 
         Glide.with(requireContext())
             .load(R.drawable.git_ava)
