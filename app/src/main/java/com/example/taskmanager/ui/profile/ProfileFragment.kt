@@ -31,7 +31,7 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val profileImage = view.findViewById<ImageView>(R.id.profile_image)
+        val profileImage = view.findViewById<ImageView>(R.id.image_view_profile)
         val imageUrl = "https://wallpapercave.com/wp/wp5244831.png" // Замените на URL вашего изображения или путь к ресурсу
 
         Glide.with(requireContext())
