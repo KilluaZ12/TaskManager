@@ -9,12 +9,15 @@ import androidx.navigation.fragment.findNavController
 import com.example.taskmanager.R
 import com.example.taskmanager.databinding.FragmentOnBoardingBinding
 import com.example.taskmanager.ui.onboarding.adapter.OnBoardingAdapter
+import me.relex.circleindicator.CircleIndicator3
 
 class OnBoardingFragment : Fragment() {
 
     private lateinit var binding: FragmentOnBoardingBinding
 
     private val adapter = OnBoardingAdapter(this::onClick)
+
+    private lateinit var indicator :CircleIndicator3
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?

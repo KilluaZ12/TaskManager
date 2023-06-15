@@ -14,16 +14,14 @@
 
   <me.relex.circleindicator.CircleIndicator3
       android:id="@+id/indicator"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="16dp"
-      app:ci_indicatorColor="@color/indicatorInactiveColor"
-      app:ci_indicatorSelectedColor="@color/indicatorActiveColor"
-      app:ci_indicatorRadius="5dp"
-      app:ci_margin="8dp"
-      app:ci_drawable="@drawable/indicator_selector"
-      app:layout_constraintTop_toBottomOf="@+id/view_pager"
+      android:layout_width="match_parent"
+      app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"/>
+      android:layout_marginBottom="50dp"
+      android:layout_height="48dp"
+      app:ci_drawable="@drawable/indicator_selector"
+      android:gravity="center"
+      app:ci_drawable_unselected="@drawable/indicator_unselector"
+      />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
