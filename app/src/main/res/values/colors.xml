@@ -10,4 +10,5 @@
     <color name="white_100">#F8F5F5</color>
     <color name="indicatorInactiveColor">#FFCCCCCC</color>
     <color name="indicatorActiveColor">#FF000000</color>
+    <color name="green">#A0E64E</color>
 </resources>

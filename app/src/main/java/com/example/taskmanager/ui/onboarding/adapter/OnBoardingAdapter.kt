@@ -13,15 +13,21 @@ class OnBoardingAdapter(private val onClick: () -> Unit) :
     Adapter<OnBoardingAdapter.OnBoardingViewHolder>() {
 
     private val list = listOf(
-        OnBoarding("Легко организуйте свои задачи и проекты",
+        OnBoarding(
+            "Легко организуйте свои задачи и проекты",
             "Организуйте свои задачи, установите сроки и расставьте приоритеты в своей работе",
-            "https://qph.cf2.quoracdn.net/main-qimg-bc8ebeeeae92f6d362ea26182657afe7-pjlq"),
-        OnBoarding("Всегда на связи с командой в любое время в любом месте",
+            "https://qph.cf2.quoracdn.net/main-qimg-bc8ebeeeae92f6d362ea26182657afe7-pjlq"
+        ),
+        OnBoarding(
+            "Всегда на связи с командой в любое время в любом месте",
             "Общайтесь, делитесь обновлениями и назначайте задачи в режиме реального времени",
-            "https://img.freepik.com/premium-vector/a-man-performs-tasks-completing-assignments-to-the-end-list-of-cases-or-tasks-business-project_159757-1381.jpg"),
-        OnBoarding("Все, что вы можете сделать в приложении",
+            "https://img.freepik.com/premium-vector/a-man-performs-tasks-completing-assignments-to-the-end-list-of-cases-or-tasks-business-project_159757-1381.jpg"
+        ),
+        OnBoarding(
+            "Все, что вы можете сделать в приложении",
             "Создавайте и систематизируйте задачи, устанавливайте напоминания и отслеживайте свой прогресс — все в одном месте.",
-            "https://www.highgear.com/wp-content/uploads/2022/12/why-is-task-management-important-1.jpg")
+            "https://www.highgear.com/wp-content/uploads/2022/12/why-is-task-management-important-1.jpg"
+        )
     )
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OnBoardingViewHolder {
@@ -45,7 +51,8 @@ class OnBoardingAdapter(private val onClick: () -> Unit) :
         fun bind(onBoarding: OnBoarding) = with(binding) {
             textViewTitle.text = onBoarding.title
             textViewDescription.text = onBoarding.description
-            Glide.with(binding.imageViewOnboard).load(onBoarding.image).into(binding.imageViewOnboard)
+            Glide.with(binding.imageViewOnboard).load(onBoarding.image)
+                .into(binding.imageViewOnboard)
             buttonGetStarted.isVisible = adapterPosition == list.lastIndex
             buttonGetStarted.setOnClickListener {
                 onClick()
