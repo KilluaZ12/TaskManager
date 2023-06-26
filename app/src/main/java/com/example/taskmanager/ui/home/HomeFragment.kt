@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.taskmanager.App
@@ -17,7 +18,7 @@ class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
 
-    private val adapter = TaskAdapter(this::onLongClickForTask)
+    private val adapter = TaskAdapter(this::onLongClickForTask, this::onClick)
 
     private val binding get() = _binding!!
 
@@ -33,21 +34,18 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        putData()
-        attachToTaskFragment()
+        getData()
+
+        binding.fabCreateTask.setOnClickListener {
+            findNavController().navigate(R.id.task_fragment)
+        }
 
         binding.recyclerViewHomeFragment.adapter = adapter
     }
 
-    private fun putData() {
+    private fun getData() {
         val list = App.database.taskDao().getAll()
         adapter.addTasks(list)
-    }
-
-    private fun attachToTaskFragment() {
-        binding.fabCreateTask.setOnClickListener {
-            findNavController().navigate(R.id.task_fragment)
-        }
     }
 
     private fun onLongClickForTask(task: Task) {
@@ -56,10 +54,9 @@ class HomeFragment : Fragment() {
         val dialogView = layoutInflater.inflate(R.layout.alert_dialog_from_task, null)
         alertDialogDeleteTask.setView(dialogView)
 
-
         alertDialogDeleteTask.setPositiveButton("Confirm") { _, _ ->
             App.database.taskDao().delete(task)
-            putData()
+            getData()
         }
 
         alertDialogDeleteTask.setNegativeButton("Cancel") { dialog, _ ->
@@ -67,7 +64,10 @@ class HomeFragment : Fragment() {
         }
 
         alertDialogDeleteTask.create().show()
+    }
 
+    private fun onClick(task: Task) {
+            findNavController().navigate(R.id.task_fragment, bundleOf("task" to task))
     }
 
     override fun onDestroyView() {

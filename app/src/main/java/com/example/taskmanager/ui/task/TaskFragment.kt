@@ -7,12 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.taskmanager.App
+import com.example.taskmanager.R
 import com.example.taskmanager.databinding.FragmentTaskBinding
 import com.example.taskmanager.model.Task
 
 class TaskFragment : Fragment() {
 
     private lateinit var binding: FragmentTaskBinding
+    private var task: Task? = null
+    private lateinit var data: Task
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,18 +27,48 @@ class TaskFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.btnSave.setOnClickListener {
-            onSave()
+        if (arguments != null) {
+            task = requireArguments().getSerializable("task") as Task
+        }
+
+        fillEditTexts()
+        buttonHandleClick()
+
+    }
+
+    private fun fillEditTexts() {
+        if (task != null) {
+            binding.editTextTitle.setText(task!!.title)
+            binding.editTextDesc.setText(task!!.description)
+            binding.btnSave.text = getString(R.string.update)
+        } else {
+            binding.btnSave.text = getString(R.string.save)
         }
     }
 
-    private fun onSave() {
-        val data = Task(
-            title = binding.editTextTitle.text.toString(),
-            description = binding.editTextDesc.text.toString()
-        )
-        App.database.taskDao().insert(data)
-        findNavController().navigateUp()
+    private fun buttonHandleClick() {
+        binding.btnSave.setOnClickListener {
+            data = Task(
+                title = binding.editTextTitle.text.toString(),
+                description = binding.editTextDesc.text.toString()
+            )
+            if (task != null) {
+                updateTask()
+            } else {
+                saveTask()
+            }
+            findNavController().navigateUp()
+        }
     }
 
+    private fun saveTask() {
+        task = Task(data.id, data.title, data.description)
+        App.database.taskDao().insert(task!!)
+    }
+
+    private fun updateTask() {
+        task!!.title = data.title
+        task!!.description = data.description
+        App.database.taskDao().update(task!!)
+    }
 }

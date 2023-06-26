@@ -26,6 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="8dp"
-        android:text="Save" />
+        android:gravity="center"
+        android:text="@string/save" />
 
 </LinearLayout>
