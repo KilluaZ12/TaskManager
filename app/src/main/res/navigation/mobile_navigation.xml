@@ -5,6 +5,10 @@
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/navigation_home">
 
+    <include
+        android:id="@+id/auth_navigation"
+        app:graph="@navigation/auth_navigation" />
+
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.example.taskmanager.ui.home.HomeFragment"
@@ -42,4 +46,22 @@
         android:name="com.example.taskmanager.ui.onboarding.OnBoardingFragment"
         android:label="fragment_on_boarding"
         tools:layout="@layout/fragment_on_boarding" />
+
+    <action
+        android:id="@+id/action_to_auth"
+        app:destination="@+id/auth_navigation"
+        app:popUpTo="@id/auth_navigation"
+        app:popUpToInclusive="false" />
+
+    <action
+        android:id="@+id/action_to_mobile_navigation"
+        app:destination="@+id/mobile_navigation"
+        app:popUpTo="@id/mobile_navigation"
+        app:popUpToInclusive="true" />
+
+    <action
+        android:id="@+id/action_to_onBoard"
+        app:destination="@+id/onBoardingFragment"
+        app:popUpTo="@id/mobile_navigation"
+        app:popUpToInclusive="true" />
 </navigation>

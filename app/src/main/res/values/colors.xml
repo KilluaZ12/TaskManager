@@ -11,4 +11,5 @@
     <color name="indicatorInactiveColor">#FFCCCCCC</color>
     <color name="indicatorActiveColor">#FF000000</color>
     <color name="green">#A0E64E</color>
+    <color name="pin_text_color">#000000</color>
 </resources>

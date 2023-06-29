@@ -28,7 +28,7 @@ class TaskFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (arguments != null) {
-            task = requireArguments().getSerializable("task") as Task
+            task = requireArguments().getSerializable("task") as Task?
         }
 
         fillEditTexts()

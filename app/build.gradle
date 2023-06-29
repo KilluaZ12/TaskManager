@@ -4,6 +4,7 @@ plugins {
     id 'kotlin-kapt'
     id 'kotlin-parcelize'
     id 'androidx.navigation.safeargs' version '2.4.2' apply false
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -40,6 +41,7 @@ android {
 }
 
 dependencies {
+    implementation 'com.google.firebase:firebase-auth-ktx:22.0.0'
     def room_version = "2.5.2"
 
     implementation "androidx.room:room-runtime:$room_version"
@@ -61,4 +63,5 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    implementation 'com.goodiebag:pinview:1.4.3'
 }
