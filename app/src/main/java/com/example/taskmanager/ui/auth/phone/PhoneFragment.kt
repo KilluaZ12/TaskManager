@@ -16,7 +16,6 @@ import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthOptions
 import com.google.firebase.auth.PhoneAuthProvider
 import java.util.concurrent.TimeUnit
-import com.example.taskmanager.ui.auth.phone.PhoneNumberFormattingWatcher
 
 class PhoneFragment : Fragment() {
 
@@ -54,8 +53,9 @@ class PhoneFragment : Fragment() {
 
         binding.btnSend.setOnClickListener {
 
+            val finalNumber = binding.countryCode.prefixText.toString() + binding.etNumber.text.toString()
             val options = PhoneAuthOptions.newBuilder(auth)
-                .setPhoneNumber(binding.etPhone.text.toString()) // Phone number to verify
+                .setPhoneNumber(finalNumber) // Phone number to verify
                 .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
                 .setActivity(requireActivity()) // Activity (for callback binding)
                 .setCallbacks(callbacks) // OnVerificationStateChangedCallbacks
@@ -63,8 +63,6 @@ class PhoneFragment : Fragment() {
             PhoneAuthProvider.verifyPhoneNumber(options)
         }
 
-        val phoneNumberWatcher = PhoneNumberFormattingWatcher(binding.etPhone, "+996")
-        binding.etPhone.addTextChangedListener(phoneNumberWatcher)
     }
 
     companion object {

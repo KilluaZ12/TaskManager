@@ -9,7 +9,6 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.taskmanager.R
 import com.example.taskmanager.databinding.FragmentAcceptBinding
-import com.example.taskmanager.databinding.ItemOnBoardingBinding
 import com.example.taskmanager.ui.auth.phone.PhoneFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
@@ -36,7 +35,7 @@ class AcceptFragment : Fragment() {
         val verId: String? = arguments?.getString(PhoneFragment.VER_KEY)
         binding.btnAccept.setOnClickListener {
 
-            val credential = PhoneAuthProvider.getCredential(verId.toString(), binding.etCode.text.toString())
+            val credential = PhoneAuthProvider.getCredential(verId.toString(), binding.verifyView.textEntered.toString())
         }
 
     }
