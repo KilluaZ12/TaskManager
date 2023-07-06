@@ -17,7 +17,7 @@ import com.google.firebase.auth.PhoneAuthOptions
 import com.google.firebase.auth.PhoneAuthProvider
 import java.util.concurrent.TimeUnit
 
-class PhoneFragment : Fragment() {
+class   PhoneFragment : Fragment() {
 
     private lateinit var binding: FragmentPhoneBinding
     private val auth by lazy {
@@ -53,7 +53,7 @@ class PhoneFragment : Fragment() {
 
         binding.btnSend.setOnClickListener {
 
-            val finalNumber = binding.countryCode.prefixText.toString() + binding.etNumber.text.toString()
+            val finalNumber = "${binding.countryCode.prefixText}${binding.etNumber.text}"
             val options = PhoneAuthOptions.newBuilder(auth)
                 .setPhoneNumber(finalNumber) // Phone number to verify
                 .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
